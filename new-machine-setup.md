@@ -1,6 +1,6 @@
-#Setting up a new machine
+# Setting up a new machine
 
-###zsh
+### zsh
 zsh
 
 ### oh-my-zsh
@@ -11,3 +11,15 @@ zsh
 vim
 
 gvim for mac
+
+### Install Home brew
+[http://brew.sh/]
+
+### Alfred
+[http://www.alfredapp.com/]
+
+### Mou (A Markdown Editor)
+[http://mouapp.com/]
+
+### Install ack!
+[http://beyondgrep.com/]
