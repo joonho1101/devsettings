@@ -48,9 +48,10 @@ Bundle 'AutoComplPop'
 "Bundle 'file:///Users/gmarik/path/to/plugin'
 
 Bundle 'editorconfig/editorconfig-vim'
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+"Bundle 'garbas/vim-snipmate'
+Bundle 'SirVer/ultisnips'
 Bundle 'wincent/Command-T'
 Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/nerdtree'
@@ -70,6 +71,8 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'briancollins/vim-jst'
 
 let NERDTreeShowHidden=1
+
+let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|out)$'
 
 map <F8> :call JsBeautify()<cr>
 " or
@@ -125,11 +128,14 @@ set smartcase
 " highlight matching brackets
 set showmatch
 
-" tab size to 4 spaces
-set tabstop=4
+" use spaces instead of tab
+set expandtab
 
 " tab size to 4 spaces
-set shiftwidth=4
+set tabstop=2
+
+" tab size to 4 spaces
+set shiftwidth=2
 
 " enable auto indentation
 set autoindent
