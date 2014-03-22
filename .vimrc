@@ -11,11 +11,15 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+set exrc            " enable per-directory .vimrc files
+set secure          " disable unsafe commands in local .vimrc files
+
+let mapleader = ','
+
 " enable syntax highlighting
 syntax on
 
 " enable plugins and indentation rules for file types
-filetype plugin indent on
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -27,52 +31,133 @@ Bundle 'gmarik/vundle'
 " My Bundles here:
 "
 " original repos on github
+
+" cool status bar
 Bundle 'bling/vim-airline'
+
+" git wrapper :Gdiff :Gstatus
 Bundle 'tpope/vim-fugitive'
+
+" hotkey based instant move <leader><leader>[movement]
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+let g:EasyMotion_leader_key = '<Leader>'
+
 "Bundle 'tpope/vim-rails.git'
 
- " vim-scripts repos
+" vim-scripts repos
+" Vim script library
 Bundle 'L9'
-"Bundle 'FuzzyFinder'
-Bundle 'ZenCoding'
-Bundle 'closetag.vim'
-Bundle 'mru.vim'
-Bundle 'AutoComplPop'
 
-" non github repos
-"Bundle 'git://git.wincent.com/command-t.git'
+"Bundle 'FuzzyFinder'
+
+"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+" type '_', '<c-y>,'
+Bundle 'mattn/emmet-vim'
+
+" close open html tags <c-_>
+Bundle 'closetag.vim'
+
+" MRU file list
+Bundle 'mru.vim'
+
+"Bundle 'AutoComplPop'
 
 " git repos on your local machine (ie. when working on your own plugin)
 "Bundle 'file:///Users/gmarik/path/to/plugin'
 
+" Ack
+Bundle 'ack.vim'
+
+" Editor Config
 Bundle 'editorconfig/editorconfig-vim'
+
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
-"Bundle 'garbas/vim-snipmate'
+
+" UltiSnips
 Bundle 'SirVer/ultisnips'
-Bundle 'wincent/Command-T'
+Bundle 'rstacruz/vim-ultisnips-css'
+
+" faster surroundings manipulation like quotes
 Bundle 'tpope/vim-surround'
+
+" better file navigator
 Bundle 'scrooloose/nerdtree'
-Bundle 'elzr/vim-json'
+
+" smart auto complete quotes, parethesis, brackets
+"Bundle 'Raimondi/delimitMate'
+
+" open files faster <c-p> <c-v>
+Bundle 'kien/ctrlp.vim'
+
+"Bundle 'ervandew/supertab'
+
+"Bundle 'tomasr/molokai'
+
+"Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+
+" Solarized color scheme
+Bundle 'altercation/vim-colors-solarized'
+
+
+" better js syntax
+"Bundle 'pangloss/vim-javascript'
+Bundle 'jelera/vim-javascript-syntax'
+
+" jshint
+"Bundle 'Shutnik/jshint2.vim'
+
+" js beautifier
 Bundle 'einars/js-beautify'
 Bundle 'maksimr/vim-jsbeautify'
-Bundle 'Raimondi/delimitMate'
-Bundle 'kien/ctrlp.vim'
-"Bundle 'ervandew/supertab'
-Bundle 'scrooloose/syntastic'
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'groenewege/vim-less'
-"Bundle 'tomasr/molokai'
-"Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'pangloss/vim-javascript'
+
+" json highlighter
+Bundle 'elzr/vim-json'
+
+" jst/ejs syntax highlighter
 Bundle 'briancollins/vim-jst'
+
+" stylus highlighter
+Bundle 'wavded/vim-stylus'
+
+" less highlighter
+Bundle 'groenewege/vim-less'
+
+" jade highlighter
+Bundle 'digitaltoad/vim-jade'
+
+" dart highlighter
+Bundle 'dart-lang/dart-vim-plugin'
+
+" js hint
+Bundle 'scrooloose/syntastic'
+
+" toggle location/quickfix list <leader>q or <leader>l
+Bundle 'milkypostman/vim-togglelist'
+
+" vim scala
+Bundle 'derekwyatt/vim-scala'
 
 let NERDTreeShowHidden=1
 
-let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|out)$'
+let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn|DS_STORE)|node_modules|out)$'
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
+
+" Lint JavaScript files after reading it:
+"let jshint2_read = 1
+"
+"" Lint JavaScript files after saving it:
+"let jshint2_save = 1
+"
+"nnoremap <silent><F1> :JSHint<CR>
+"inoremap <silent><F1> <C-O>:JSHint<CR>
+"vnoremap <silent><F1> :JSHint<CR>
+"cnoremap <F1> JSHint
 
 map <F8> :call JsBeautify()<cr>
 " or
@@ -85,30 +170,49 @@ autocmd FileType css noremap <buffer> <F8> :call CSSBeautify()<cr>
 " syntastic
 map <F9> :SyntasticToggleMode<cr>
 let g:syntastic_auto_loc_list=1
-let g:syntastic_mode_map = { 'mode': 'active' }
-                          "\ 'active_filetypes': ['ruby', 'php'],
-                          "\ 'passive_filetypes': ['puppet'] }
+let g:syntastic_mode_map = { 'mode': 'active',
+                          \ 'passive_filetypes': ['html', 'js'] }
+" let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", "<snap-content>"]
 
 " toggling syntax
-:nmap <F7> :if exists("g:syntax_on") <Bar>
+nmap <F7> :if exists("g:syntax_on") <Bar>
 	\   syntax off <Bar>
 	\ else <Bar>
 	\   syntax enable <Bar>
 	\ endif <CR>
 
 " command redirect
-:command WQ wq
-:command Wq wq
-:command W w
-:command Q q
-:command E e
+command WQ wq
+command Wq wq
+command W w
+command Q q
+command E e
 
 " JSLint related
-:nmap <Up> :cope<CR>
-:nmap <Down> :cclose<CR>
-:nmap <Right> :cnext<CR>
-:nmap <Left> :cprev<CR>
-:nmap <C-s> :w<CR>
+nmap <Up> :cope<CR>
+nmap <Down> :cclose<CR>
+nmap <Right> :cnext<CR>
+nmap <Left> :cprev<CR>
+
+nmap <C-s> :w<CR>
+nmap <C-z> ZZ<CR>
+
+nmap <C-w>, <C-w><
+nmap <C-w>. <C-w>>
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Insert mode navigation
+:imap <C-h> <Left>
+:imap <C-l> <Right>
+:imap <C-e> <End>
+:imap <C-a> <Home>
+:inoremap jj <C-J>
+:imap jk <Esc>
 
 " more useful backspace
 set backspace=indent,eol,start 
@@ -128,14 +232,47 @@ set smartcase
 " highlight matching brackets
 set showmatch
 
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" For regular expressions turn magic on
+set magic
+
 " use spaces instead of tab
-set expandtab
+" "'expandtab' affects what happens when you press the <TAB> key.
+" If 'expandtab' is set, pressing the <TAB> key will always insert 'softtabstop' amount of space characters.
+" Otherwise, the amount of spaces inserted is minimized by using TAB characters.
+"set expandtab
 
 " tab size to 4 spaces
-set tabstop=2
+" changes the width of the TAB character, plain and simple.
+set tabstop=4
+
+" softtabstop affects what happens when you press the <TAB> or <BS> keys.
+" Its default value is the same as the value of 'tabstop',
+" but when using indentation without hard tabs or mixed indentation,
+" you want to set it to the same value as 'shiftwidth'.
+" If 'expandtab' is unset, and 'tabstop' is different from 'softtabstop',
+" the <TAB> key will minimize the amount of spaces inserted by using multiples of TAB characters.
+" For instance, if 'tabstop' is 8, and the amount of consecutive space inserted is 20,
+" two TAB characters and four spaces will be used.
+" set softtabstop=2
+
+" 'smarttab' affects how <TAB> key presses are interpreted depending on where the cursor is.
+" If 'smarttab' is on, a <TAB> key inserts indentation according to 'shiftwidth' at the beginning of the line,
+" whereas 'tabstop' and 'softtabstop' are used elsewhere.
+" There is seldom any need to set this option,
+" unless it is necessary to use hard TAB characters in body text or code.
+set smarttab
 
 " tab size to 4 spaces
-set shiftwidth=2
+" 'shiftwidth' affects what happens when you press >>, << or ==. It also affects how automatic indentation works. (See below.)
+set shiftwidth=4
+
+set list listchars=eol:\ ,tab:\ \ ,trail:·,extends:>,precedes:<
+
+"set cinoptions=>4,n-2,{2,^-2,:0,=2,g0,h2,t0,+2,(0,u0,w1,m1
+
 
 " enable auto indentation
 set autoindent
@@ -171,7 +308,11 @@ set history=10000
 set background=dark
 "let g:molokai_original = 1
 colorscheme solarized
-highlight Normal ctermbg=Black guibg=Black
+"highlight Normal ctermbg=Black guibg=Black
+
+let g:solarized_contrast="high"
+let g:solarized_visibility="normal"
+let g:solarized_hitrail=1
 
 " set encoding as unicode
 set encoding=utf8
@@ -215,7 +356,49 @@ set vb t_vb=
 " hidden buffers
 set hidden
 
+" auto change current working directory
+" set autochdir
+
 " file format priorities
 set fileformats=unix,dos,mac
+set fileformat=unix
+
+" Remap VIM 0 to first non-blank character
+map 0 ^
+
+" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+if has("mac") || has("macunix")
+  nmap <D-j> <M-j>
+  nmap <D-k> <M-k>
+  vmap <D-j> <M-j>
+  vmap <D-k> <M-k>
+endif
+
+" Delete trailing white space on save, useful for Python and CoffeeScript ;)
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite *.js :call DeleteTrailingWS()
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
 "highlight Search        ctermfg=Black ctermbg=LightBlue cterm=NONE gui=bold guifg=Black guibg=LightBlue
+
+filetype off
+filetype on
+syntax on
+filetype plugin indent on
+
+autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4
+autocmd Filetype styl setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd Filetype stylus setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd Filetype ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd Filetype yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd Filetype jade setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
