@@ -407,6 +407,7 @@ set shiftwidth=4
 
 " autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4
 autocmd Filetype javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd Filetype html setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd Filetype styl setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd Filetype stylus setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd Filetype ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
