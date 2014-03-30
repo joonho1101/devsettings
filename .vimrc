@@ -147,6 +147,7 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 nnoremap <leader>a :Ack -i<Space>
+nnoremap <leader>e :e<Space>
 
 nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 
