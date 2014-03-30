@@ -146,6 +146,8 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
+nnoremap <leader>a :Ack -i<Space>
+
 nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 
 " Lint JavaScript files after reading it:
@@ -407,6 +409,7 @@ set shiftwidth=4
 
 " autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4
 autocmd Filetype javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd Filetype html setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd Filetype styl setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd Filetype stylus setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd Filetype ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
