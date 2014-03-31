@@ -151,6 +151,7 @@ nnoremap <Leader>e :e<Space>
 nnoremap <Leader>a :Ack -i<Space>
 nnoremap <Leader>s :UltiSnipsEdit<CR>
 nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
+nnoremap <Leader>w <C-w>v<C-w>l
 
 nnoremap <TAB> %
 vnoremap <TAB> %
@@ -208,12 +209,12 @@ nmap <C-w>, <C-w><
 nmap <C-w>. <C-w>>
 
 " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-h> <C-w>h
+map <C-l> <C-w>l
 
-nmap <D-d> <C-W>v
+nmap <D-d> <C-w>v
 
 " Insert mode navigation
 :imap <C-h> <Left>
@@ -225,6 +226,18 @@ nmap <D-d> <C-W>v
 
 nnoremap / /\v
 vnoremap / /\v
+
+" scroll offset to cursor
+set scrolloff=5
+
+" color on n-th column
+set colorcolumn=80
+
+" scroll fast
+set ttyfast
+
+" relative line numbers
+set relativenumber
 
 " substitutions globally on lines
 set gdefault
@@ -263,6 +276,9 @@ set autoread
 " show ruler
 set ruler
 
+" Show mode
+set showmode
+
 " Show command in status line
 set showcmd
 
@@ -292,7 +308,8 @@ let g:solarized_visibility="normal"
 let g:solarized_hitrail=1
 
 " set encoding as unicode
-set encoding=utf8
+set encoding=utf-8
+set fileencoding=utf-8
 
 " initial window height for gvim
 " set lines=50
