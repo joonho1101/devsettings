@@ -219,6 +219,8 @@ map <C-l> <C-w>l
 nmap <M-d> <C-w>v<C-w>l
 nmap <D-d> <C-w>v<C-w>l
 
+nnoremap Q :qa<CR>
+
 " Insert mode navigation
 :imap <C-h> <Left>
 :imap <C-l> <Right>
@@ -229,6 +231,8 @@ nmap <D-d> <C-w>v<C-w>l
 
 nnoremap / /\v
 vnoremap / /\v
+
+set wildmenu
 
 " scroll offset to cursor
 set scrolloff=5
@@ -262,6 +266,9 @@ set smartcase
 
 " highlight matching brackets
 set showmatch
+
+" How many tenths of a second to blink when matching brackets
+set mat=2
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
