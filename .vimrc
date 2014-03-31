@@ -142,15 +142,18 @@ let NERDTreeShowHidden=1
 
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn|DS_STORE)|node_modules|out)$'
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<TAB>"
+let g:UltiSnipsJumpForwardTrigger="<TAB>"
+let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 
 nnoremap <Leader><Space> :nohlsearch<CR>
 nnoremap <Leader>e :e<Space>
 nnoremap <Leader>a :Ack -i<Space>
 nnoremap <Leader>s :UltiSnipsEdit<CR>
 nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
+
+nnoremap <TAB> %
+vnoremap <TAB> %
 
 " Lint JavaScript files after reading it:
 "let jshint2_read = 1
