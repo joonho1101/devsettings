@@ -147,13 +147,16 @@ let g:UltiSnipsExpandTrigger="<TAB>"
 let g:UltiSnipsJumpForwardTrigger="<TAB>"
 let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 
+nnoremap <Leader>bd :Bclose<CR>
+nnoremap <Leader>ba :1,1000 bd<CR>
+
 nnoremap <Leader><Space> :nohlsearch<CR>
 nnoremap <Leader>e :e<Space>
-nnoremap <Leader>a :Ack -i<Space>
-nnoremap <Leader>s :UltiSnipsEdit<CR>
+nnoremap <Leader>/ :Ack -i<Space>
 nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 nnoremap <Leader>w :w!<CR>
 nnoremap <Leader>v <C-w>v<C-w>l
+nnoremap <Leader>s <C-w>v<C-w>l:UltiSnipsEdit<CR>
 nnoremap <Leader>. <C-w>v<C-w>l:e ~/.vimrc<CR>
 
 nnoremap <TAB> %
@@ -220,9 +223,6 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-h> <C-w>h
 map <C-l> <C-w>l
-
-nmap <M-d> <C-w>v<C-w>l
-nmap <D-d> <C-w>v<C-w>l
 
 nnoremap Q :qa<CR>
 
@@ -385,12 +385,28 @@ nmap <M-k> mz:m-2<CR>`z
 vmap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
 
+nmap <M-d> <C-w>v<C-w>l
+
 if has("mac") || has("macunix")
   nmap <D-j> <M-j>
   nmap <D-k> <M-k>
   vmap <D-j> <M-j>
   vmap <D-k> <M-k>
+
+  nmap <D-d> <M-d>
 endif
+
+" A function to clear the undo history
+function! <SID>ForgetUndo()
+    let old_undolevels = &undolevels
+    set undolevels=-1
+    exe "normal a \<BS>\<Esc>"
+    let &undolevels = old_undolevels
+    unlet old_undolevels
+endfunction
+command -nargs=0 ClearUndo call <SID>ForgetUndo()
+
+nnoremap <Leader>u :ClearUndo<CR>
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
