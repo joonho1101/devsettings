@@ -146,8 +146,9 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-nnoremap <Leader>a :Ack -i<Space>
+nnoremap <Leader><Space> :nohlsearch<CR>
 nnoremap <Leader>e :e<Space>
+nnoremap <Leader>a :Ack -i<Space>
 nnoremap <Leader>s :UltiSnipsEdit<CR>
 nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 
@@ -162,16 +163,16 @@ nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 "vnoremap <silent><F1> :JSHint<CR>
 "cnoremap <F1> JSHint
 
-map <F8> :call JsBeautify()<cr>
+map <F8> :call JsBeautify()<CR>
 " or
-autocmd FileType javascript noremap <buffer>  <F8> :call JsBeautify()<cr>
+autocmd FileType javascript noremap <buffer>  <F8> :call JsBeautify()<CR>
 " for html
-autocmd FileType html noremap <buffer> <F8> :call HtmlBeautify()<cr>
+autocmd FileType html noremap <buffer> <F8> :call HtmlBeautify()<CR>
 " for css or scss
-autocmd FileType css noremap <buffer> <F8> :call CSSBeautify()<cr>
+autocmd FileType css noremap <buffer> <F8> :call CSSBeautify()<CR>
 
 " syntastic
-map <F9> :SyntasticToggleMode<cr>
+map <F9> :SyntasticToggleMode<CR>
 let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map = { 'mode': 'active',
                           \ 'passive_filetypes': ['html', 'js'] }
@@ -340,10 +341,10 @@ set fileformat=unix
 map 0 ^
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+nmap <M-j> mz:m+<CR>`z
+nmap <M-k> mz:m-2<CR>`z
+vmap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
 
 if has("mac") || has("macunix")
   nmap <D-j> <M-j>
