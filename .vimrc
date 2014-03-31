@@ -38,7 +38,7 @@ Bundle 'bling/vim-airline'
 " git wrapper :Gdiff :Gstatus
 Bundle 'tpope/vim-fugitive'
 
-" hotkey based instant move <leader><leader>[movement]
+" hotkey based instant move <Leader><Leader>[movement]
 Bundle 'Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = '<Leader>'
 
@@ -132,7 +132,7 @@ Bundle 'dart-lang/dart-vim-plugin'
 " js hint
 Bundle 'scrooloose/syntastic'
 
-" toggle location/quickfix list <leader>q or <leader>l
+" toggle location/quickfix list <Leader>q or <Leader>l
 Bundle 'milkypostman/vim-togglelist'
 
 " vim scala
@@ -146,9 +146,9 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-nnoremap <leader>a :Ack -i<Space>
-nnoremap <leader>e :e<Space>
-
+nnoremap <Leader>a :Ack -i<Space>
+nnoremap <Leader>e :e<Space>
+nnoremap <Leader>s :UltiSnipsEdit<CR>
 nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 
 " Lint JavaScript files after reading it:
@@ -218,6 +218,12 @@ nmap <D-d> <C-W>v
 :imap <C-a> <Home>
 :inoremap jj <C-J>
 :imap jk <Esc>
+
+nnoremap / /\v
+vnoremap / /\v
+
+" substitutions globally on lines
+set gdefault
 
 " more useful backspace
 set backspace=indent,eol,start 
