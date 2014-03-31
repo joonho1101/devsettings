@@ -15,6 +15,7 @@ set exrc            " enable per-directory .vimrc files
 set secure          " disable unsafe commands in local .vimrc files
 
 let mapleader = ','
+let g:mapleader = ','
 
 " enable syntax highlighting
 syntax on
@@ -51,10 +52,10 @@ Bundle 'L9'
 "Bundle 'FuzzyFinder'
 
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-" type '_', '<c-y>,'
+" type '_', '<C-y>,'
 Bundle 'mattn/emmet-vim'
 
-" close open html tags <c-_>
+" close open html tags <C-_>
 Bundle 'closetag.vim'
 
 " MRU file list
@@ -87,7 +88,7 @@ Bundle 'scrooloose/nerdtree'
 " smart auto complete quotes, parethesis, brackets
 "Bundle 'Raimondi/delimitMate'
 
-" open files faster <c-p> <c-v>
+" open files faster <C-p> <C-v>
 Bundle 'kien/ctrlp.vim'
 
 "Bundle 'ervandew/supertab'
