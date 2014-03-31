@@ -153,11 +153,14 @@ nnoremap <Leader>ba :1,1000 bd<CR>
 nnoremap <Leader><Space> :nohlsearch<CR>
 nnoremap <Leader>e :e<Space>
 nnoremap <Leader>/ :Ack -i<Space>
-nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 nnoremap <Leader>w :w!<CR>
 nnoremap <Leader>v <C-w>v<C-w>l
 nnoremap <Leader>s <C-w>v<C-w>l:UltiSnipsEdit<CR>
 nnoremap <Leader>. <C-w>v<C-w>l:e ~/.vimrc<CR>
+nnoremap <Leader>u :ClearUndo<CR>
+
+" When you press <Leader>r you can search and replace the selected text
+vnoremap <silent> <Leader>r :call VisualSelection('replace', '')<CR>
 
 nnoremap <TAB> %
 vnoremap <TAB> %
@@ -396,6 +399,11 @@ if has("mac") || has("macunix")
   nmap <D-d> <M-d>
 endif
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Helper functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " A function to clear the undo history
 function! <SID>ForgetUndo()
     let old_undolevels = &undolevels
@@ -406,7 +414,32 @@ function! <SID>ForgetUndo()
 endfunction
 command -nargs=0 ClearUndo call <SID>ForgetUndo()
 
-nnoremap <Leader>u :ClearUndo<CR>
+function! CmdLine(str)
+    exe "menu Foo.Bar :" . a:str
+    emenu Foo.Bar
+    unmenu Foo
+endfunction
+
+function! VisualSelection(direction, extra_filter) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'b'
+        execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'gv'
+        call CmdLine("Ack \"" . l:pattern . "\" " )
+    elseif a:direction == 'replace'
+        call CmdLine("%s" . '/'. l:pattern . '/')
+    elseif a:direction == 'f'
+        execute "normal /" . l:pattern . "^M"
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
