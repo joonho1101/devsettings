@@ -134,7 +134,7 @@ Bundle 'dart-lang/dart-vim-plugin'
 Bundle 'scrooloose/syntastic'
 
 " toggle location/quickfix list <Leader>q or <Leader>l
-Bundle 'milkypostman/vim-togglelist'
+" Bundle 'milkypostman/vim-togglelist'
 
 " vim scala
 Bundle 'derekwyatt/vim-scala'
@@ -147,17 +147,25 @@ let g:UltiSnipsExpandTrigger="<TAB>"
 let g:UltiSnipsJumpForwardTrigger="<TAB>"
 let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 
-nnoremap <Leader>bd :Bclose<CR>
+nnoremap <Leader>bd :bdelete<CR>
 nnoremap <Leader>ba :1,1000 bd<CR>
 
 nnoremap <Leader><Space> :nohlsearch<CR>
-nnoremap <Leader>e :e<Space>
+nnoremap <Leader>e :vsplit<Space>
 nnoremap <Leader>/ :Ack -i<Space>
 nnoremap <Leader>w :w!<CR>
 nnoremap <Leader>v <C-w>v<C-w>l
 nnoremap <Leader>s <C-w>v<C-w>l:UltiSnipsEdit<CR>
 nnoremap <Leader>. <C-w>v<C-w>l:e ~/.vimrc<CR>
 nnoremap <Leader>u :ClearUndo<CR>
+
+nmap <silent> <Leader>c :call ToggleList("Quickfix List", 'c')<CR>
+nnoremap <Leader>cn :cnext<CR>
+nnoremap <Leader>cp :cprev<CR>
+
+nmap <silent> <Leader>l :call ToggleList("Location List", 'l')<CR>
+nnoremap <Leader>ln :lnext<CR>
+nnoremap <Leader>lp :lprev<CR>
 
 " When you press <Leader>r you can search and replace the selected text
 vnoremap <silent> <Leader>r :call VisualSelection('replace', '')<CR>
@@ -216,7 +224,7 @@ nmap <Right> :cnext<CR>
 nmap <Left> :cprev<CR>
 
 nmap <C-s> :w<CR>
-nmap <C-z> ZZ<CR>
+nmap <C-z> :q<CR>
 
 nmap <C-w>, <C-w><
 nmap <C-w>. <C-w>>
@@ -320,7 +328,9 @@ set history=10000
 
 " dark background scheme
 set background=dark
+
 "let g:molokai_original = 1
+
 colorscheme solarized
 "highlight Normal ctermbg=Black guibg=Black
 
@@ -338,12 +348,22 @@ set fileencoding=utf-8
 " initial window width for gvim
 " set columns=160
 
-" set font as Lucida Console with font size 9
-"set guifont=Lucida_Console:h9:cANSI
-
 " using Source Code Pro
 set anti enc=utf-8
-set guifont=Source\ Code\ Pro\:h12,Menlo:h12,Monaco:h12
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => GUI related
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set font according to system
+if has("mac") || has("macunix")
+    set guifont=Source\ Code\ Pro:h15,Menlo:h15
+elseif has("win16") || has("win32")
+    set guifont=Source\ Code\ Pro:h12,Bitstream\ Vera\ Sans\ Mono:h11
+elseif has("linux")
+    set guifont=Source\ Code\ Pro:h12,Bitstream\ Vera\ Sans\ Mono:h11
+elseif has("unix")
+    set guifont=Monospace\ 11
+endif
 
 " hide menubar for GUI
 set guioptions-=m
@@ -439,6 +459,33 @@ function! VisualSelection(direction, extra_filter) range
 
     let @/ = l:pattern
     let @" = l:saved_reg
+endfunction
+
+function! GetBufferList()
+  redir =>buflist
+  silent! ls
+  redir END
+  return buflist
+endfunction
+
+function! ToggleList(bufname, pfx)
+  let buflist = GetBufferList()
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      exec(a:pfx.'close')
+      return
+    endif
+  endfor
+  if a:pfx == 'l' && len(getloclist(0)) == 0
+      echohl ErrorMsg
+      echo "Location List is Empty."
+      return
+  endif
+  let winnr = winnr()
+  exec(a:pfx.'open')
+  if winnr() != winnr
+    wincmd p
+  endif
 endfunction
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
