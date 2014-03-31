@@ -152,7 +152,8 @@ nnoremap <Leader>e :e<Space>
 nnoremap <Leader>a :Ack -i<Space>
 nnoremap <Leader>s :UltiSnipsEdit<CR>
 nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
-nnoremap <Leader>w <C-w>v<C-w>l
+nnoremap <Leader>w :w!<CR>
+nnoremap <Leader>v <C-w>v<C-w>l
 
 nnoremap <TAB> %
 vnoremap <TAB> %
@@ -215,7 +216,8 @@ map <C-k> <C-w>k
 map <C-h> <C-w>h
 map <C-l> <C-w>l
 
-nmap <D-d> <C-w>v
+nmap <M-d> <C-w>v<C-w>l
+nmap <D-d> <C-w>v<C-w>l
 
 " Insert mode navigation
 :imap <C-h> <Left>
