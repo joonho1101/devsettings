@@ -154,6 +154,7 @@ nnoremap <Leader>s :UltiSnipsEdit<CR>
 nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 nnoremap <Leader>w :w!<CR>
 nnoremap <Leader>v <C-w>v<C-w>l
+nnoremap <Leader>. <C-w>v<C-w>l:e ~/.vimrc<CR>
 
 nnoremap <TAB> %
 vnoremap <TAB> %
@@ -198,6 +199,10 @@ command W w
 command Q q
 command E e
 
+" Treat long lines as break lines
+map j gj
+map k gk
+
 " JSLint related
 nmap <Up> :cope<CR>
 nmap <Down> :cclose<CR>
@@ -231,6 +236,9 @@ nnoremap Q :qa<CR>
 
 nnoremap / /\v
 vnoremap / /\v
+
+nnoremap ? ?\v
+vnoremap ? ?\v
 
 set wildmenu
 
@@ -354,7 +362,8 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-set noerrorbells novisualbell
+set noerrorbells
+set novisualbell
 set vb t_vb=
 
 " hidden buffers
@@ -405,6 +414,9 @@ set autoindent
 
 " enable smart indentation
 set smartindent
+
+" wrap lines
+set wrap
 
 " use spaces instead of tab
 " "'expandtab' affects what happens when you press the <TAB> key.
