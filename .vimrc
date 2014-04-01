@@ -153,17 +153,16 @@ nnoremap <Leader>ba :1,1000 bd<CR>
 nnoremap <Leader><Space> :nohlsearch<CR>
 nnoremap <Leader>e :vsplit<Space>
 nnoremap <Leader>/ :Ack -i<Space>
-nnoremap <Leader>w :w!<CR>
 nnoremap <Leader>v <C-w>v<C-w>l
-nnoremap <Leader>s <C-w>v<C-w>l:UltiSnipsEdit<CR>
-nnoremap <Leader>. <C-w>v<C-w>l:e ~/.vimrc<CR>
-nnoremap <Leader>u :ClearUndo<CR>
+nnoremap <Leader>sn <C-w>v<C-w>l:UltiSnipsEdit<CR>
+nnoremap <Leader>.v <C-w>v<C-w>l:e ~/.vimrc<CR>
+nnoremap <Leader>un :ClearUndo<CR>
 
-nmap <silent> <Leader>c :call ToggleList("Quickfix List", 'c')<CR>
+nmap <silent> <Leader>cc :call ToggleList("Quickfix List", 'c')<CR>
 nnoremap <Leader>cn :cnext<CR>
 nnoremap <Leader>cp :cprev<CR>
 
-nmap <silent> <Leader>l :call ToggleList("Location List", 'l')<CR>
+nmap <silent> <Leader>ll :call ToggleList("Location List", 'l')<CR>
 nnoremap <Leader>ln :lnext<CR>
 nnoremap <Leader>lp :lprev<CR>
 
@@ -217,18 +216,18 @@ command E e
 map j gj
 map k gk
 
-" JSLint related
-nmap <Up> :cope<CR>
-nmap <Down> :cclose<CR>
-nmap <Right> :cnext<CR>
-nmap <Left> :cprev<CR>
-
-nmap <C-s> :w<CR>
-nmap <C-z> :q<CR>
+nnoremap <C-s> :w<CR>
+nnoremap <C-z> :q<CR>
+nnoremap <C-c> :q<CR>
 nnoremap Q :qa<CR>
 
-nmap <C-w>, <C-w><
-nmap <C-w>. <C-w>>
+" Resize easier
+nnoremap <C-Left> <C-w>=
+nnoremap <C-Right> <C-w>_
+nnoremap <Right> :vertical resize +1<CR>
+nnoremap <Left> :vertical resize -1<CR>
+nnoremap <Down> :resize +1<CR>
+nnoremap <Up> :resize -1<CR>
 
 " Smart way to move between windows
 map <C-j> <C-w>j
@@ -251,6 +250,9 @@ nnoremap ? ?\v
 vnoremap ? ?\v
 
 set wildmenu
+
+" open on right side when split
+set splitright
 
 " scroll offset to cursor
 set scrolloff=5
