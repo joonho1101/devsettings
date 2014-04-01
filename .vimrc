@@ -1,143 +1,131 @@
-" Vundle
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
-set nocompatible               " be iMproved
-filetype off                   " required!
+" Be iMproved
+set nocompatible
 
-set exrc            " enable per-directory .vimrc files
-set secure          " disable unsafe commands in local .vimrc files
+" Required for Vundle
+filetype off
+
+" Enable per-directory .vimrc files
+set exrc
+
+" Disable unsafe commands in local .vimrc files
+set secure
 
 let mapleader = ','
 let g:mapleader = ','
 
-" enable syntax highlighting
+" Enable syntax highlighting
 syntax on
 
-" enable plugins and indentation rules for file types
+"-------------------------------------------------------------------------------
+" Vundle Plugins
+"-------------------------------------------------------------------------------
 
+" Vundle, the plug-in manager for Vim
+" https://github.com/gmarik/Vundle.vim
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
-" let Vundle manage Vundle
-" required! 
 Bundle 'gmarik/vundle'
 
-" My Bundles here:
-"
-" original repos on github
-
-" cool status bar
+" Lean & mean status/tabline for vim that's light as air
+" https://github.com/bling/vim-airline
 Bundle 'bling/vim-airline'
 
-" git wrapper :Gdiff :Gstatus
+" A Git wrapper so awesome, it should be illegal
+" https://github.com/tpope/vim-fugitive
 Bundle 'tpope/vim-fugitive'
 
-" hotkey based instant move <Leader><Leader>[movement]
+" Vim motions on speed!
+" https://github.com/Lokaltog/vim-easymotion
 Bundle 'Lokaltog/vim-easymotion'
-let g:EasyMotion_leader_key = '<Leader>'
 
-"Bundle 'tpope/vim-rails.git'
-
-" vim-scripts repos
-" Vim script library
+" l9 is a Vim-script library, which provides some utility functions and commands for programming in Vim
+" http://www.vim.org/scripts/script.php?script_id=3252
 Bundle 'L9'
 
-"Bundle 'FuzzyFinder'
-
-"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-" type '_', '<C-y>,'
+" emmet for vim
+" https://github.com/mattn/emmet-vim
 Bundle 'mattn/emmet-vim'
 
-" close open html tags <C-_>
+" Functions and mappings to close open HTML/XML tags
+" http://www.vim.org/scripts/script.php?script_id=13
 Bundle 'closetag.vim'
 
-" MRU file list
+" Most Recently Used (MRU) Vim Plugin
+" https://github.com/yegappan/mru
 Bundle 'mru.vim'
 
-"Bundle 'AutoComplPop'
-
-" git repos on your local machine (ie. when working on your own plugin)
-"Bundle 'file:///Users/gmarik/path/to/plugin'
-
-" Ack
+" Vim plugin for the Perl module / CLI script 'ack'
+" https://github.com/mileszs/ack.vim
 Bundle 'ack.vim'
 
-" Editor Config
+" EditorConfig plugin for Vim
+" https://github.com/editorconfig/editorconfig-vim
 Bundle 'editorconfig/editorconfig-vim'
 
+" vim: interpret a file by function and cache file automatically
+" https://github.com/marcweber/vim-addon-mw-utils
 Bundle 'MarcWeber/vim-addon-mw-utils'
+
+" Some utility functions for VIM
+" https://github.com/tomtom/tlib_vim
 Bundle 'tomtom/tlib_vim'
 
-" UltiSnips
+" UltiSnips - The ultimate snippet solution for Vim
+" https://github.com/SirVer/ultisnips
 Bundle 'SirVer/ultisnips'
+
+" Write CSS in VIM faster
+" https://github.com/rstacruz/vim-ultisnips-css
 Bundle 'rstacruz/vim-ultisnips-css'
 
-" faster surroundings manipulation like quotes
+" surround.vim: quoting/parenthesizing made simple
+" https://github.com/tpope/vim-surround
 Bundle 'tpope/vim-surround'
 
-" better file navigator
+" A tree explorer plugin for vim
+" https://github.com/scrooloose/nerdtree
 Bundle 'scrooloose/nerdtree'
 
-" smart auto complete quotes, parethesis, brackets
-"Bundle 'Raimondi/delimitMate'
-
-" open files faster <C-p> <C-v>
+" Fuzzy file, buffer, mru, tag, etc finder
+" https://github.com/kien/ctrlp.vim
 Bundle 'kien/ctrlp.vim'
 
-"Bundle 'ervandew/supertab'
-
-"Bundle 'tomasr/molokai'
-
-"Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-
-" Solarized color scheme
+" Precision colorscheme for the vim text editor
+" https://github.com/altercation/vim-colors-solarized
 Bundle 'altercation/vim-colors-solarized'
 
-
-" better js syntax
-"Bundle 'pangloss/vim-javascript'
+" Enhanced javascript syntax file for Vim
+" https://github.com/jelera/vim-javascript-syntax
 Bundle 'jelera/vim-javascript-syntax'
 
-" jshint
-"Bundle 'Shutnik/jshint2.vim'
-
-" js beautifier
+" Vim plugin which formated javascript files by js-beautify
+" https://github.com/maksimr/vim-jsbeautify
 Bundle 'einars/js-beautify'
 Bundle 'maksimr/vim-jsbeautify'
 
-" json highlighter
+" A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing
+" https://github.com/elzr/vim-json
 Bundle 'elzr/vim-json'
 
-" jst/ejs syntax highlighter
+" A vim plugin for highlighting and indenting JST/EJS syntax
+" https://github.com/briancollins/vim-jst
 Bundle 'briancollins/vim-jst'
 
-" stylus highlighter
+" Syntax Highlighting for Stylus
+" https://github.com/wavded/vim-stylus
 Bundle 'wavded/vim-stylus'
 
-" less highlighter
+" Vim syntax for LESS
+" https://github.com/groenewege/vim-less
 Bundle 'groenewege/vim-less'
 
-" jade highlighter
+" Vim Jade template engine syntax highlighting and indention
+" https://github.com/digitaltoad/vim-jade
 Bundle 'digitaltoad/vim-jade'
 
-" dart highlighter
-Bundle 'dart-lang/dart-vim-plugin'
-
-" js hint
+" Syntax checking hacks for vim
+" https://github.com/scrooloose/syntastic
 Bundle 'scrooloose/syntastic'
-
-" toggle location/quickfix list <Leader>q or <Leader>l
-" Bundle 'milkypostman/vim-togglelist'
-
-" vim scala
-Bundle 'derekwyatt/vim-scala'
 
 let NERDTreeShowHidden=1
 
@@ -240,8 +228,6 @@ imap <C-h> <Left>
 imap <C-l> <Right>
 imap <C-e> <End>
 imap <C-a> <Home>
-inoremap jj <C-J>
-imap jk <Esc>
 
 " Clipboard
 nnoremap <A-y> "+yy
@@ -282,7 +268,7 @@ set relativenumber
 set gdefault
 
 " more useful backspace
-set backspace=indent,eol,start 
+set backspace=indent,eol,start
 
 " highlight search: highlight all matched characters
 set hlsearch
