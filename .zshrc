@@ -60,7 +60,6 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="/usr/local/heroku/bin:$PATH"
 
 export NODE_PATH=/usr/local/lib/node_modules
-export ACKRC=".ackrc"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -75,9 +74,13 @@ fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-alias ll="ls -AFlh"
-alias vim=gvim
+export ACKRC=".ackrc"
 
+# Aliases
+alias ll='ls -AFlh'
+alias vim='gvim'
+alias zshrc='vim ~/.zshrc'
+alias vimrc='vim ~/.vimrc'
 alias bower='noglob bower'
 
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
