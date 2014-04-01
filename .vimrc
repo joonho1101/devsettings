@@ -225,6 +225,7 @@ nmap <Left> :cprev<CR>
 
 nmap <C-s> :w<CR>
 nmap <C-z> :q<CR>
+nnoremap Q :qa<CR>
 
 nmap <C-w>, <C-w><
 nmap <C-w>. <C-w>>
@@ -234,8 +235,6 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-h> <C-w>h
 map <C-l> <C-w>l
-
-nnoremap Q :qa<CR>
 
 " Insert mode navigation
 :imap <C-h> <Left>
