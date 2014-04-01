@@ -169,6 +169,8 @@ nnoremap <Leader>lp :lprev<CR>
 " When you press <Leader>r you can search and replace the selected text
 vnoremap <silent> <Leader>r :call VisualSelection('replace', '')<CR>
 
+nmap <A-d> <C-w>v<C-w>l
+
 nnoremap <TAB> %
 vnoremap <TAB> %
 
@@ -404,21 +406,20 @@ set fileformat=unix
 map 0 ^
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<CR>`z
-nmap <M-k> mz:m-2<CR>`z
-vmap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
+nnoremap <A-j> :m+<CR>==
+nnoremap <A-k> :m-2<CR>==
+inoremap <A-j> <Esc>:m+<CR>==gi
+inoremap <A-k> <Esc>:m-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 
-nmap <M-d> <C-w>v<C-w>l
-
-if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
-
-  nmap <D-d> <M-d>
-endif
+" Indent
+nnoremap <A-l> >>
+nnoremap <A-h> <<
+inoremap <A-l> <C-t>
+inoremap <A-h> <C-d>
+vnoremap <A-l> >gv
+vnoremap <A-h> <gv
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
