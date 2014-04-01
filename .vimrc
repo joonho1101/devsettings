@@ -169,8 +169,6 @@ nnoremap <Leader>lp :lprev<CR>
 " When you press <Leader>r you can search and replace the selected text
 vnoremap <silent> <Leader>r :call VisualSelection('replace', '')<CR>
 
-nmap <A-d> <C-w>v<C-w>l
-
 nnoremap <TAB> %
 vnoremap <TAB> %
 
@@ -238,13 +236,25 @@ map <C-h> <C-w>h
 map <C-l> <C-w>l
 
 " Insert mode navigation
-:imap <C-h> <Left>
-:imap <C-l> <Right>
-:imap <C-e> <End>
-:imap <C-a> <Home>
-:inoremap jj <C-J>
-:imap jk <Esc>
+imap <C-h> <Left>
+imap <C-l> <Right>
+imap <C-e> <End>
+imap <C-a> <Home>
+inoremap jj <C-J>
+imap jk <Esc>
 
+" Clipboard
+nnoremap <A-y> "+yy
+nnoremap <A-d> "+dd
+nnoremap <A-p> "+P
+inoremap <A-y> <C-O>"+yy
+inoremap <A-d> <C-O>"+dd
+inoremap <A-p> <C-O>"+P
+vnoremap <A-y> "+y
+vnoremap <A-d> "+x
+vnoremap <A-p> "+gP
+
+" Search
 nnoremap / /\v
 vnoremap / /\v
 
