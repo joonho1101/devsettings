@@ -27,7 +27,7 @@
 "-------------------------------------------------------------------------------
 
 
-" Be iMproved
+" Be iMproved *MUST BE FIRST*
 set nocompatible
 
 " Required for Vundle
@@ -609,5 +609,5 @@ autocmd Filetype jade setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 filetype off
 filetype on
-syntax on
 filetype plugin indent on
+syntax on
