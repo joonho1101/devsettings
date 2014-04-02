@@ -184,8 +184,12 @@ let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['html', 'js
 "-------------------------------------------------------------------------------
 
 " Break long lines
-map j gj
-map k gk
+noremap j gj
+noremap k gk
+
+" Switch 0 and ^
+noremap 0 ^
+noremap ^ 0
 
 " Ignore case
 command WQ wq
@@ -219,6 +223,22 @@ inoremap <C-w> <C-o>w
 inoremap <C-b> <C-o>b
 inoremap <C-a> <C-o>0
 inoremap <C-e> <C-o>$
+
+" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+nnoremap <M-j> :m+<CR>==
+nnoremap <M-k> :m-2<CR>==
+inoremap <M-j> <Esc>:m+<CR>==gi
+inoremap <M-k> <Esc>:m-2<CR>==gi
+vnoremap <M-j> :m '>+1<CR>gv=gv
+vnoremap <M-k> :m '<-2<CR>gv=gv
+
+" Indent
+nnoremap <M-l> >>
+nnoremap <M-h> <<
+inoremap <M-l> <C-t>
+inoremap <M-h> <C-d>
+vnoremap <M-l> >gv
+vnoremap <M-h> <gv
 
 " Navigate split panes
 nnoremap <C-j> <C-w>j
@@ -455,25 +475,6 @@ set hidden
 " file format priorities
 set fileformats=unix,dos,mac
 set fileformat=unix
-
-" Remap VIM 0 to first non-blank character
-map 0 ^
-
-" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nnoremap <M-j> :m+<CR>==
-nnoremap <M-k> :m-2<CR>==
-inoremap <M-j> <Esc>:m+<CR>==gi
-inoremap <M-k> <Esc>:m-2<CR>==gi
-vnoremap <M-j> :m '>+1<CR>gv=gv
-vnoremap <M-k> :m '<-2<CR>gv=gv
-
-" Indent
-nnoremap <M-l> >>
-nnoremap <M-h> <<
-inoremap <M-l> <C-t>
-inoremap <M-h> <C-d>
-vnoremap <M-l> >gv
-vnoremap <M-h> <gv
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
