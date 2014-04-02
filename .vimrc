@@ -39,6 +39,7 @@ set exrc
 " Disable unsafe commands in local .vimrc files
 set secure
 
+" Map , as <Leader>
 let mapleader = ','
 let g:mapleader = ','
 
@@ -161,89 +162,71 @@ Bundle 'scrooloose/syntastic'
 " Vundle Plugin Configurations
 "-------------------------------------------------------------------------------
 
+" Show hidden files in NERDTree
 let NERDTreeShowHidden=1
 
+" CtrlP ignore patterns
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn|DS_STORE)|node_modules|out)$'
 
+" Map <TAB> as trigger for UltiSnips
 let g:UltiSnipsExpandTrigger="<TAB>"
 let g:UltiSnipsJumpForwardTrigger="<TAB>"
 let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 
-nnoremap <Leader>bd :bdelete<CR>
-nnoremap <Leader>ba :1,1000 bd<CR>
-
-nnoremap <Leader><Space> :nohlsearch<CR>
-nnoremap <Leader>e :vsplit<Space>
-nnoremap <Leader>/ :Ack -i<Space>
-nnoremap <Leader>v <C-w>v<C-w>l
-nnoremap <Leader>sn <C-w>v<C-w>l:UltiSnipsEdit<CR>
-nnoremap <Leader>.v <C-w>v<C-w>l:e ~/.vimrc<CR>
-nnoremap <Leader>un :ClearUndo<CR>
-
-nmap <silent> <Leader>cc :call ToggleList("Quickfix List", 'c')<CR>
-nnoremap <Leader>cn :cnext<CR>
-nnoremap <Leader>cp :cprev<CR>
-
-nmap <silent> <Leader>ll :call ToggleList("Location List", 'l')<CR>
-nnoremap <Leader>ln :lnext<CR>
-nnoremap <Leader>lp :lprev<CR>
-
-" When you press <Leader>r you can search and replace the selected text
-vnoremap <silent> <Leader>r :call VisualSelection('replace', '')<CR>
-
-nnoremap <TAB> %
-vnoremap <TAB> %
-
-" Lint JavaScript files after reading it:
-"let jshint2_read = 1
-"
-"" Lint JavaScript files after saving it:
-"let jshint2_save = 1
-"
-"nnoremap <silent><F1> :JSHint<CR>
-"inoremap <silent><F1> <C-O>:JSHint<CR>
-"vnoremap <silent><F1> :JSHint<CR>
-"cnoremap <F1> JSHint
-
-map <F8> :call JsBeautify()<CR>
-" or
-autocmd FileType javascript noremap <buffer>  <F8> :call JsBeautify()<CR>
-" for html
-autocmd FileType html noremap <buffer> <F8> :call HtmlBeautify()<CR>
-" for css or scss
-autocmd FileType css noremap <buffer> <F8> :call CSSBeautify()<CR>
-
-" syntastic
-map <F9> :SyntasticToggleMode<CR>
+" Config Syntastic
 let g:syntastic_auto_loc_list=1
-let g:syntastic_mode_map = { 'mode': 'active',
-                          \ 'passive_filetypes': ['html', 'js'] }
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['html', 'js'] }
 " let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", "<snap-content>"]
 
-" toggling syntax
-nmap <F7> :if exists("g:syntax_on") <Bar>
-	\   syntax off <Bar>
-	\ else <Bar>
-	\   syntax enable <Bar>
-	\ endif <CR>
 
-" command redirect
+"-------------------------------------------------------------------------------
+" Mappings
+"-------------------------------------------------------------------------------
+
+" Break long lines
+map j gj
+map k gk
+
+" Ignore case
 command WQ wq
 command Wq wq
 command W w
 command Q q
 command E e
 
-" Treat long lines as break lines
-map j gj
-map k gk
-
+" Save/Quit
 nnoremap <C-s> :w<CR>
 nnoremap <C-z> :q<CR>
 nnoremap <C-c> :q<CR>
 nnoremap Q :qa<CR>
 
-" Resize easier
+" Search with standard regex
+nnoremap / /\v
+vnoremap / /\v
+nnoremap ? ?\v
+vnoremap ? ?\v
+
+" Insert mode navigation
+inoremap <C-d><C-d> <C-o>dd
+inoremap <C-d><C-w> <C-o>dw
+inoremap <C-d><C-e> <C-o>de
+inoremap <C-d><C-b> <C-o>db
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
+inoremap <C-h> <C-o>h
+inoremap <C-l> <C-o>l
+inoremap <C-w> <C-o>w
+inoremap <C-b> <C-o>b
+inoremap <C-a> <C-o>0
+inoremap <C-e> <C-o>$
+
+" Navigate split panes
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" Resize split panes
 nnoremap <C-Left> <C-w>=
 nnoremap <C-Right> <C-w>_
 nnoremap <Right> :vertical resize +1<CR>
@@ -251,35 +234,74 @@ nnoremap <Left> :vertical resize -1<CR>
 nnoremap <Down> :resize +1<CR>
 nnoremap <Up> :resize -1<CR>
 
-" Smart way to move between windows
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-h> <C-w>h
-map <C-l> <C-w>l
-
-" Insert mode navigation
-imap <C-h> <Left>
-imap <C-l> <Right>
-imap <C-e> <End>
-imap <C-a> <Home>
-
-" Clipboard
+" Clipboard Copy/Cut/Paste
 nnoremap <M-y> "+yy
 nnoremap <M-d> "+dd
 nnoremap <M-p> "+P
-inoremap <M-y> <C-O>"+yy
-inoremap <M-d> <C-O>"+dd
-inoremap <M-p> <C-O>"+P
+inoremap <M-y> <C-o>"+yy
+inoremap <M-d> <C-o>"+dd
+inoremap <M-p> <C-o>"+P
 vnoremap <M-y> "+y
 vnoremap <M-d> "+x
 vnoremap <M-p> "+gP
 
-" Search
-nnoremap / /\v
-vnoremap / /\v
+" Close current buffer
+nnoremap <Leader>bd :bdelete<CR>
 
-nnoremap ? ?\v
-vnoremap ? ?\v
+" Close all buffers
+nnoremap <Leader>ba :1,1000 bd<CR>
+
+" Clear search highlights
+nnoremap <Leader><Space> :nohlsearch<CR>
+
+" Split open file
+nnoremap <Leader>e :vsplit<Space>
+
+" Split vertical panes and focus
+nnoremap <Leader>v <C-w>v<C-w>l
+
+" Edit .vimrc
+nnoremap <Leader>.v <C-w>v<C-w>l:e ~/.vimrc<CR>
+
+" Ack
+nnoremap <Leader>/ :Ack -i<Space>
+
+" Edit UltiSnips
+nnoremap <Leader>sn <C-w>v<C-w>l:UltiSnipsEdit<CR>
+
+" Clear undo history
+nnoremap <Leader>un :ClearUndo<CR>
+
+" Quickfix List
+nmap <silent> <Leader>cc :call ToggleList("Quickfix List", 'c')<CR>
+nnoremap <Leader>co :copen<CR>
+nnoremap <Leader>cn :cnext<CR>
+nnoremap <Leader>cp :cprev<CR>
+
+" Location List
+nmap <silent> <Leader>ll :call ToggleList("Location List", 'l')<CR>
+nnoremap <Leader>lo :lopen<CR>
+nnoremap <Leader>ln :lnext<CR>
+nnoremap <Leader>lp :lprev<CR>
+
+" Search and replace
+vnoremap <silent> <Leader>r :call VisualSelection('replace', '')<CR>
+
+" Beautify js, html, css
+autocmd FileType javascript noremap <buffer> <Leader>be :call JsBeautify()<CR>
+autocmd FileType html noremap <buffer> <Leader>be :call HtmlBeautify()<CR>
+autocmd FileType css noremap <buffer> <Leader>be :call CSSBeautify()<CR>
+
+" Toggle Syntastic active/passive mode
+nnoremap <Leader>sy :SyntasticToggleMode<CR>
+
+" Toggle syntax on/off
+nnoremap <Leader>ts :call ToggleSyntax()<CR>
+
+
+"-------------------------------------------------------------------------------
+" Editor Configurations
+"-------------------------------------------------------------------------------
 
 set macmeta
 
@@ -457,6 +479,15 @@ vnoremap <M-h> <gv
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Toggle syntax on/off
+function! ToggleSyntax()
+    if exists("g:syntax_on")
+        syntax off
+    else
+        syntax on
+    endif
+endfunction
 
 " A function to clear the undo history
 function! <SID>ForgetUndo()
