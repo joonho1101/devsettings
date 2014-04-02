@@ -162,21 +162,26 @@ Bundle 'scrooloose/syntastic'
 " Vundle Plugin Configurations
 "-------------------------------------------------------------------------------
 
+" Solarized color scheme configurations
+let g:solarized_contrast="high"
+let g:solarized_visibility="normal"
+let g:solarized_hitrail=1
+
 " Show hidden files in NERDTree
 let NERDTreeShowHidden=1
-
-" CtrlP ignore patterns
-let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn|DS_STORE)|node_modules|out)$'
 
 " Map <TAB> as trigger for UltiSnips
 let g:UltiSnipsExpandTrigger="<TAB>"
 let g:UltiSnipsJumpForwardTrigger="<TAB>"
 let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 
-" Config Syntastic
+" Syntastic configurations
 let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['html', 'js'] }
 " let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", "<snap-content>"]
+
+" CtrlP ignore patterns
+let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn|DS_STORE)|node_modules|out)$'
 
 
 "-------------------------------------------------------------------------------
@@ -323,63 +328,90 @@ nnoremap <Leader>ts :call ToggleSyntax()<CR>
 " Editor Configurations
 "-------------------------------------------------------------------------------
 
+" Enable Alt key in Mac
 set macmeta
 
+" Enable autocomplete in menu
 set wildmenu
 
-" open on right side when split
-set splitright
-
-" scroll offset to cursor
-set scrolloff=5
-
-" color on n-th column
-set colorcolumn=80
-
-" scroll fast
+" Scroll fast
 set ttyfast
 
-" relative line numbers
+" Scroll offset to cursor
+set scrolloff=5
+
+" Relative line numbers to cursor
 set relativenumber
 
-" substitutions globally on lines
+" Open vertical split on the right side
+set splitright
+
+" Highlight n-th column
+set colorcolumn=80
+
+" Global substitutions on lines
 set gdefault
 
-" more useful backspace
+" Backspace navigation
 set backspace=indent,eol,start
 
-" highlight search: highlight all matched characters
+" Enable auto indentation
+set autoindent
+
+" Enable smart indentation
+set smartindent
+
+" Tab character width
+set tabstop=4
+
+" Smart auto indentation
+set smarttab
+
+" Auto indentation width, including >>, <<, ==
+set shiftwidth=4
+
+" Use 'softtabstop' spaces instead of tab
+set expandtab
+
+" Number of spaces to replace <TAB>/<BS>
+set softtabstop=2
+
+" Wrap lines
+set wrap
+
+" Highlight all matches for search
 set hlsearch
 
-" incremental search: real-time search as you type
+" Real-time search
 set incsearch
 
-" ignorecase for search
+" Ignorecase for search
 set ignorecase
 
-" smartcase matching
+" Smartcase matching
 set smartcase
 
-" highlight matching brackets
+" Highlight matching brackets
 set showmatch
 
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
-" Don't redraw while executing macros (good performance config)
+" Don't redraw while executing macros for better performance
 set lazyredraw
 
-" For regular expressions turn magic on
+" Magic regular expressions
 set magic
 
+" Highlight whitespaces
 set list listchars=eol:\ ,tab:\ \ ,trail:·,extends:>,precedes:<
 
-"set cinoptions=>4,n-2,{2,^-2,:0,=2,g0,h2,t0,+2,(0,u0,w1,m1
+" set cinoptions=>4,n-2,{2,^-2,:0,=2,g0,h2,t0,+2,(0,u0,w1,m1
 
-" auto refresh if file is changed outside the vim
+" Auto refresh modified files
 set autoread
 
-" show ruler
+" Show ruler
 set ruler
 
 " Show mode
@@ -388,49 +420,53 @@ set showmode
 " Show command in status line
 set showcmd
 
-" set command bar 2 lines high
+" Command bar height
 set cmdheight=2
 
-" set command line as 2 lines
+" Command line height
 set laststatus=2
 
-" show line numbers on the left
+" Show line numbers
 set number
 
-" set line number width
-set numberwidth=5
+" Line number width
+set numberwidth=4
 
-" history buffer size
+" History buffer size
 set history=10000
 
-" dark background scheme
+" Background scheme
 set background=dark
 
-"let g:molokai_original = 1
-
+" Color scheme
 colorscheme solarized
-"highlight Normal ctermbg=Black guibg=Black
 
-let g:solarized_contrast="high"
-let g:solarized_visibility="normal"
-let g:solarized_hitrail=1
+" Line ending characters
+set fileformat=unix
 
-" set encoding as unicode
+" Unicode encoding
 set encoding=utf-8
 set fileencoding=utf-8
-
-" initial window height for gvim
-" set lines=50
-
-" initial window width for gvim
-" set columns=160
-
-" using Source Code Pro
 set anti enc=utf-8
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => GUI related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable hidden modified buffers
+set hidden
+
+" Disable backup files
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Disable error/visual bells
+set noerrorbells
+set novisualbell
+set vb t_vb=
+
+
+"-------------------------------------------------------------------------------
+" GUI Configurations
+"-------------------------------------------------------------------------------
+
 " Set font according to system
 if has("mac") || has("macunix")
     set guifont=Source\ Code\ Pro:h15,Menlo:h15
@@ -442,44 +478,19 @@ elseif has("unix")
     set guifont=Monospace\ 11
 endif
 
-" hide menubar for GUI
+" Hide menubar
 set guioptions-=m
 
-" hide toolbar for GUI
+" Hide toolbar
 set guioptions-=T
 
-" hide right hand side vertical scroll for GUI
+" Hide vertical scroll on right
 set guioptions-=r
 
-" enable 256 colors
-"set t_Co=256
 
-" show characters for tab and trailing spaces
-" set list listchars=tab:>-,trail:~,precedes:<,extends:>
-
-" do not create backup files
-set nobackup
-set nowritebackup
-set noswapfile
-
-set noerrorbells
-set novisualbell
-set vb t_vb=
-
-" hidden buffers
-set hidden
-
-" auto change current working directory
-" set autochdir
-
-" file format priorities
-set fileformats=unix,dos,mac
-set fileformat=unix
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Helper functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"-------------------------------------------------------------------------------
+" Helper Functions
+"-------------------------------------------------------------------------------
 
 " Toggle syntax on/off
 function! ToggleSyntax()
@@ -490,7 +501,7 @@ function! ToggleSyntax()
     endif
 endfunction
 
-" A function to clear the undo history
+" Clear the undo history
 function! <SID>ForgetUndo()
     let old_undolevels = &undolevels
     set undolevels=-1
@@ -500,12 +511,14 @@ function! <SID>ForgetUndo()
 endfunction
 command -nargs=0 ClearUndo call <SID>ForgetUndo()
 
+" Used in VisualSelection()
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
     unmenu Foo
 endfunction
 
+" Search and replace
 function! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"
     execute "normal! vgvy"
@@ -527,6 +540,7 @@ function! VisualSelection(direction, extra_filter) range
     let @" = l:saved_reg
 endfunction
 
+" Used in ToggleList()
 function! GetBufferList()
   redir =>buflist
   silent! ls
@@ -534,6 +548,7 @@ function! GetBufferList()
   return buflist
 endfunction
 
+" Quickfix List / Location List
 function! ToggleList(bufname, pfx)
   let buflist = GetBufferList()
   for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
@@ -554,72 +569,31 @@ function! ToggleList(bufname, pfx)
   endif
 endfunction
 
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
+" Remove trailing whitespaces
 func! DeleteTrailingWS()
   exe "normal mz"
   %s/\s\+$//ge
   exe "normal `z"
 endfunc
+
+
+"-------------------------------------------------------------------------------
+" File Type Specific Configurations
+"-------------------------------------------------------------------------------
+
+" On save, remove trailing whitespaces
 autocmd BufWrite *.js :call DeleteTrailingWS()
-autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
+autocmd BufWrite *.html :call DeleteTrailingWS()
+autocmd BufWrite *.css :call DeleteTrailingWS()
+autocmd BufWrite *.styl :call DeleteTrailingWS()
+autocmd BufWrite *.less :call DeleteTrailingWS()
+autocmd BufWrite *.py :call DeleteTrailingWS()
 
-"highlight Search        ctermfg=Black ctermbg=LightBlue cterm=NONE gui=bold guifg=Black guibg=LightBlue
 
-filetype off
-filetype on
-syntax on
-filetype plugin indent on
-
-" enable auto indentation
-set autoindent
-
-" enable smart indentation
-set smartindent
-
-" wrap lines
-set wrap
-
-" use spaces instead of tab
-" "'expandtab' affects what happens when you press the <TAB> key.
-" If 'expandtab' is set, pressing the <TAB> key will always insert 'softtabstop' amount of space characters.
-" Otherwise, the amount of spaces inserted is minimized by using TAB characters.
-"set expandtab
-
-" tab size to 4 spaces
-" changes the width of the TAB character, plain and simple.
-set tabstop=4
-
-" softtabstop affects what happens when you press the <TAB> or <BS> keys.
-" Its default value is the same as the value of 'tabstop',
-" but when using indentation without hard tabs or mixed indentation,
-" you want to set it to the same value as 'shiftwidth'.
-" If 'expandtab' is unset, and 'tabstop' is different from 'softtabstop',
-" the <TAB> key will minimize the amount of spaces inserted by using multiples of TAB characters.
-" For instance, if 'tabstop' is 8, and the amount of consecutive space inserted is 20,
-" two TAB characters and four spaces will be used.
-" set softtabstop=2
-
-" 'smarttab' affects how <TAB> key presses are interpreted depending on where the cursor is.
-" If 'smarttab' is on, a <TAB> key inserts indentation according to 'shiftwidth' at the beginning of the line,
-" whereas 'tabstop' and 'softtabstop' are used elsewhere.
-" There is seldom any need to set this option,
-" unless it is necessary to use hard TAB characters in body text or code.
-set smarttab
-
-" tab size to 4 spaces
-" 'shiftwidth' affects what happens when you press >>, << or ==. It also affects how automatic indentation works. (See below.)
-set shiftwidth=4
-
-" set autoindent
-" set smartindent
-" set expandtab
-" set tabstop=4
-" set softtabstop=2
-" set smarttab
-" set shiftwidth=4
-
+" autoindent smartindent expandtab tabstop=4 softtabstop=2 smarttab shiftwidth=4
 " autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4
+" Indentation rules for each file type
 autocmd Filetype javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd Filetype html setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd Filetype styl setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
@@ -627,3 +601,13 @@ autocmd Filetype stylus setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd Filetype ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd Filetype yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd Filetype jade setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+
+
+"-------------------------------------------------------------------------------
+" Post Initializations
+"-------------------------------------------------------------------------------
+
+filetype off
+filetype on
+syntax on
+filetype plugin indent on
