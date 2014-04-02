@@ -264,15 +264,15 @@ imap <C-e> <End>
 imap <C-a> <Home>
 
 " Clipboard
-nnoremap <A-y> "+yy
-nnoremap <A-d> "+dd
-nnoremap <A-p> "+P
-inoremap <A-y> <C-O>"+yy
-inoremap <A-d> <C-O>"+dd
-inoremap <A-p> <C-O>"+P
-vnoremap <A-y> "+y
-vnoremap <A-d> "+x
-vnoremap <A-p> "+gP
+nnoremap <M-y> "+yy
+nnoremap <M-d> "+dd
+nnoremap <M-p> "+P
+inoremap <M-y> <C-O>"+yy
+inoremap <M-d> <C-O>"+dd
+inoremap <M-p> <C-O>"+P
+vnoremap <M-y> "+y
+vnoremap <M-d> "+x
+vnoremap <M-p> "+gP
 
 " Search
 nnoremap / /\v
@@ -280,6 +280,8 @@ vnoremap / /\v
 
 nnoremap ? ?\v
 vnoremap ? ?\v
+
+set macmeta
 
 set wildmenu
 
@@ -436,20 +438,20 @@ set fileformat=unix
 map 0 ^
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nnoremap <A-j> :m+<CR>==
-nnoremap <A-k> :m-2<CR>==
-inoremap <A-j> <Esc>:m+<CR>==gi
-inoremap <A-k> <Esc>:m-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+nnoremap <M-j> :m+<CR>==
+nnoremap <M-k> :m-2<CR>==
+inoremap <M-j> <Esc>:m+<CR>==gi
+inoremap <M-k> <Esc>:m-2<CR>==gi
+vnoremap <M-j> :m '>+1<CR>gv=gv
+vnoremap <M-k> :m '<-2<CR>gv=gv
 
 " Indent
-nnoremap <A-l> >>
-nnoremap <A-h> <<
-inoremap <A-l> <C-t>
-inoremap <A-h> <C-d>
-vnoremap <A-l> >gv
-vnoremap <A-h> <gv
+nnoremap <M-l> >>
+nnoremap <M-h> <<
+inoremap <M-l> <C-t>
+inoremap <M-h> <C-d>
+vnoremap <M-l> >gv
+vnoremap <M-h> <gv
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
