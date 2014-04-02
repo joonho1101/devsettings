@@ -188,6 +188,9 @@ let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn|DS_STORE)|node_modules|out)$'
 " Mappings
 "-------------------------------------------------------------------------------
 
+" Faster command
+nnoremap ; :
+
 " Break long lines
 noremap j gj
 noremap k gk
