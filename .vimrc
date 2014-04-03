@@ -219,8 +219,8 @@ command E e
 
 " Save/Quit
 nnoremap <C-s> :w<CR>
-nnoremap <C-z> :q<CR>
-nnoremap <C-c> :q<CR>
+nnoremap <C-z> :bd<CR>
+nnoremap <C-c> :bd<CR>
 nnoremap Q :qa<CR>
 
 " Search with standard regex
