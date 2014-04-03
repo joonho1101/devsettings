@@ -64,6 +64,10 @@ Bundle 'bling/vim-airline'
 " https://github.com/tpope/vim-fugitive
 Bundle 'tpope/vim-fugitive'
 
+" Enable repeating supported plugin maps with "."
+" https://github.com/tpope/vim-repeat
+Bundle 'tpope/vim-repeat'
+
 " Vim motions on speed!
 " https://github.com/Lokaltog/vim-easymotion
 Bundle 'Lokaltog/vim-easymotion'
@@ -188,8 +192,15 @@ let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn|DS_STORE)|node_modules|out)$'
 " Mappings
 "-------------------------------------------------------------------------------
 
-" Faster command
+" Easier command
 nnoremap ; :
+
+" Repeat last command
+nnoremap ;; @:
+
+" Easier macro
+nnoremap <space> @
+nnoremap <space><space> @@
 
 " Break long lines
 noremap j gj
