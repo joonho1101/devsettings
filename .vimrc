@@ -365,13 +365,13 @@ set autoindent
 set smartindent
 
 " Tab character width
-set tabstop=4
+set tabstop=2
 
 " Smart auto indentation
 set smarttab
 
 " Auto indentation width, including >>, <<, ==
-set shiftwidth=4
+set shiftwidth=2
 
 " Use 'softtabstop' spaces instead of tab
 set expandtab
@@ -596,7 +596,7 @@ autocmd BufWrite *.py :call DeleteTrailingWS()
 
 " autoindent smartindent expandtab tabstop=4 softtabstop=2 smarttab shiftwidth=4
 " autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4
-" Indentation rules for each file type
+" Indentation rules for file types
 autocmd Filetype javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd Filetype html setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd Filetype styl setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
