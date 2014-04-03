@@ -220,7 +220,7 @@ command E e
 " Save/Quit
 nnoremap <C-s> :w<CR>
 nnoremap <C-z> :bd<CR>
-nnoremap <C-c> :bd<CR>
+nnoremap <C-c> :q<CR>
 nnoremap Q :qa<CR>
 
 " Search with standard regex
