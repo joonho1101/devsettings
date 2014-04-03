@@ -266,8 +266,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " Resize split panes
-nnoremap <C-Left> <C-w>=
-nnoremap <C-Right> <C-w>_
+nnoremap <Leader>= <C-w>=
 nnoremap <Right> :vertical resize +1<CR>
 nnoremap <Left> :vertical resize -1<CR>
 nnoremap <Down> :resize +1<CR>
@@ -314,14 +313,18 @@ nnoremap <Leader>un :ClearUndo<CR>
 " Quickfix List
 nmap <silent> <Leader>cc :call ToggleList("Quickfix List", 'c')<CR>
 nnoremap <Leader>co :copen<CR>
-nnoremap <Leader>cn :cnext<CR>
 nnoremap <Leader>cp :cprev<CR>
+nnoremap <Leader>cn :cnext<CR>
+nnoremap <M-9> :cprev<CR>
+nnoremap <M-0> :cnext<CR>
 
 " Location List
 nmap <silent> <Leader>ll :call ToggleList("Location List", 'l')<CR>
 nnoremap <Leader>lo :lopen<CR>
-nnoremap <Leader>ln :lnext<CR>
 nnoremap <Leader>lp :lprev<CR>
+nnoremap <Leader>ln :lnext<CR>
+nnoremap <M-[> :lprev<CR>
+nnoremap <M-]> :lnext<CR>
 
 " Search and replace
 vnoremap <silent> <Leader>r :call VisualSelection('replace', '')<CR>
