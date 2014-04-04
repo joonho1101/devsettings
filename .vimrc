@@ -285,6 +285,9 @@ vnoremap <M-p> "+gP
 
 " Close current buffer
 nnoremap <Leader>bd :bdelete<CR>
+nnoremap <Leader>bn :bnext<CR>
+nnoremap <Leader>bp :bprevious<CR>
+nnoremap <Leader>bl :ls<CR>
 
 " Close all buffers
 nnoremap <Leader>ba :1,1000 bd<CR>
