@@ -219,8 +219,8 @@ command E e
 
 " Save/Quit
 nnoremap <C-s> :w<CR>
-nnoremap <C-z> :bd<CR>
-nnoremap <C-c> :q<CR>
+nnoremap <C-z> :q<CR>
+nnoremap <C-c> :bd<CR>
 nnoremap Q :qa<CR>
 
 " Search with standard regex
@@ -316,16 +316,12 @@ nnoremap <Leader>un :ClearUndo<CR>
 " Quickfix List
 nmap <silent> <Leader>cc :call ToggleList("Quickfix List", 'c')<CR>
 nnoremap <Leader>co :copen<CR>
-nnoremap <Leader>cp :cprev<CR>
-nnoremap <Leader>cn :cnext<CR>
 nnoremap <M-9> :cprev<CR>
 nnoremap <M-0> :cnext<CR>
 
 " Location List
 nmap <silent> <Leader>ll :call ToggleList("Location List", 'l')<CR>
 nnoremap <Leader>lo :lopen<CR>
-nnoremap <Leader>lp :lprev<CR>
-nnoremap <Leader>ln :lnext<CR>
 nnoremap <M-[> :lprev<CR>
 nnoremap <M-]> :lnext<CR>
 
