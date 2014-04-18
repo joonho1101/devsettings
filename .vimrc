@@ -203,8 +203,8 @@ nnoremap <space> @
 nnoremap <space><space> @@
 
 " Break long lines
-noremap j gj
-noremap k gk
+"noremap j gj
+"noremap k gk
 
 " Switch 0 and ^
 noremap 0 ^
